@@ -1,0 +1,2 @@
+;; Analyzed by ClojureScript 1.7.170
+{:name quantum.ui.form.html, :doc "Namespace for functions related HTML. Tag domain, etc.", :excludes #{}, :use-macros nil, :require-macros nil, :uses nil, :requires nil, :imports nil, :defs {ui-tag-domain {:name quantum.ui.form.html/ui-tag-domain, :file "src/cljc/quantum/ui/form/html.cljc", :line 7, :column 1, :end-line 7, :end-column 19, :meta {:file "/Users/alexandergunnarson/Development/Source Code Projects/byu/CS 360/Project0/src/cljc/quantum/ui/form/html.cljc", :line 7, :column 6, :end-line 7, :end-column 19}}}}
