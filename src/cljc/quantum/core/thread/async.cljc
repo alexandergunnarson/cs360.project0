@@ -158,6 +158,8 @@
 ;  ([ ] (.isInterrupted ^Strand (current-strand)))
 ;  ([x] (interrupted?* x))))
 
+(declare interrupted?)
+
 ;(defnt close!
 ;#?(:clj
 ;  ([^Thread                      x] (.stop    x))

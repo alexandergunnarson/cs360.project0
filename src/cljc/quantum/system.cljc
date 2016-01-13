@@ -143,9 +143,14 @@
                      root-id   (-> config :frontend :root-id)]
                  (assert (fn? render-fn) #{render-fn})
                  (assert (string? root-id) #{root-id})
-                 (log/pr :debug "Now rendering on root node, id" root-id)
-                 (rx/render [render-fn]
-                   (js/document.getElementById root-id)))))))
+
+                 (let [elem (.createElement js/document "div")]
+                   (set! (.-id elem) root-id)
+                   (.appendChild (.-body js/document) elem)
+    
+                   (log/pr :debug "Now rendering on root node, id" root-id)
+  
+                   (rx/render [render-fn] elem)))))))
 
 #?(:clj
 (defmacro create-system-vars

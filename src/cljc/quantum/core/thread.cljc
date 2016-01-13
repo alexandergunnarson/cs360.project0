@@ -102,35 +102,35 @@
           [~id :handlers] ~handlers)
        result#)))
 
-#?(:clj
-(defn ^:private interrupt!* [thread thread-id interrupted force?]
-  (if-not force?
-    (do (log/pr ::debug "Before interrupt handler for id" thread-id)
-        ((or interrupted fn-nil) thread)
-        (log/pr ::debug "After interrupt handler for id" thread-id))
-    (do (async/interrupt! thread)
-        (if ((fn-or async/interrupted? async/closed?) thread)
-            ((or interrupted fn-nil) thread)
-            (throw+ {:type :thread-already-closed :msg (str/sp "Thread" thread-id "cannot be interrupted.")}))))))
+;#?(:clj
+;(defn ^:private interrupt!* [thread thread-id interrupted force?]
+;  (if-not force?
+;    (do (log/pr ::debug "Before interrupt handler for id" thread-id)
+;        ((or interrupted fn-nil) thread)
+;        (log/pr ::debug "After interrupt handler for id" thread-id))
+;    (do (async/interrupt! thread)
+;        (if ((fn-or async/interrupted? async/closed?) thread)
+;            ((or interrupted fn-nil) thread)
+;            (throw+ {:type :thread-already-closed :msg (str/sp "Thread" thread-id "cannot be interrupted.")}))))))
 
-#?(:clj
-(defn+ ^:private ^:suspendable close!* [thread thread-id close-reqs cleanup force?]
-  (let [max-tries 3]
-    (log/pr ::debug "Before close request for id" thread-id)
-    (when (and close-reqs (not (async/closed? close-reqs)))
-      (async/put!! close-reqs :req)) ; it calls its own close-request handler
-    (log/pr ::debug "After close request for id" thread-id)
-    (force cleanup) ; closes message queues, releases other resources
-                    ; that can/should be released before full termination
-    (log/pr ::debug "After cleanup for id" thread-id)
-    (when force?
-      (async/close! thread) ; force shutdown
-      (loop [tries 0]
-        (log/pr :debug "Trying to close thread" thread-id)
-        (when (and (async/open? thread) (<= tries max-tries))
-          (log/pr :debug {:type :thread-already-closed :msg (str/sp "Thread" thread-id "cannot be closed.")})
-          (async/sleep 100) ; wait a little bit for it to stop
-          (recur (inc tries))))))))
+;#?(:clj
+;(defn+ ^:private ^:suspendable close!* [thread thread-id close-reqs cleanup force?]
+;  (let [max-tries 3]
+;    (log/pr ::debug "Before close request for id" thread-id)
+;    (when (and close-reqs (not (async/closed? close-reqs)))
+;      (async/put!! close-reqs :req)) ; it calls its own close-request handler
+;    (log/pr ::debug "After close request for id" thread-id)
+;    (force cleanup) ; closes message queues, releases other resources
+;                    ; that can/should be released before full termination
+;    (log/pr ::debug "After cleanup for id" thread-id)
+;    (when force?
+;      (async/close! thread) ; force shutdown
+;      (loop [tries 0]
+;        (log/pr :debug "Trying to close thread" thread-id)
+;        (when (and (async/open? thread) (<= tries max-tries))
+;          (log/pr :debug {:type :thread-already-closed :msg (str/sp "Thread" thread-id "cannot be closed.")})
+;          (async/sleep 100) ; wait a little bit for it to stop
+;          (recur (inc tries))))))))
 
 #?(:clj
 (defn close!

@@ -1,2 +1,0 @@
-;; Analyzed by ClojureScript 1.7.170
-{:name quantum.core.macros, :doc "Some useful macros, like de-repetitivizing protocol extensions.\n          Also some plumbing macros for |for| loops and the like.", :excludes #{macroexpand name macroexpand-all}, :use-macros nil, :require-macros nil, :uses nil, :requires nil, :imports nil}

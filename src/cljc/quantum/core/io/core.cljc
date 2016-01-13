@@ -5,7 +5,9 @@
             [quantum.core.convert        :as conv
               :refer [->name ->str]                   ]
             [quantum.db.datomic          :as db      
-              :refer [EphemeralDatabase]              ]))
+              #?@(:cljs [:refer [EphemeralDatabase]]) ])
+  #?(:clj
+  (:import (quantum.db.datomic EphemeralDatabase))))
 
 #_(defn reset-conn! [db]
   (reset! conn db)
