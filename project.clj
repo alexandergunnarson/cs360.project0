@@ -199,7 +199,8 @@
           :resource-paths ["dev-resources"]
           :dependencies   []
           :plugins [;[codox "0.8.8"]
-                    [lein-cljsbuild                  "1.0.5"]
+                    ;[lein-cljsbuild                  "1.1.1"]
+                    [lein-cljsbuild "1.1.2-Q-SNAPSHOT"]
                     ;[com.cemerick/clojurescript.test "0.3.1" :exclusions [org.json/json]]
 
                     ; rm -rf ./target && rm -rf ./dev-resources/public/js && lein figwheel dev
@@ -236,12 +237,14 @@
                    :asset-path           "js/compiled/out"
                    :source-map           true
                    :source-map-timestamp true
-                   :cache-analysis       true}}
+                   :cache-analysis       true
+                   }}
        {:id "min"
         :source-paths ["src/cljs" "src/cljc"]
-        :compiler {:output-to     "dev-resources/public/js/compiled/out/project0.js"
+        :compiler {:output-to     "dev-resources/public/js/min-compiled/out/system.js"
                    :main          alexandergunnarson.byu.project0.system
                    :optimizations :advanced
+                   :asset-path    "js/min-compiled/out"
                    :pretty-print  false}}]}
   :figwheel {:http-server-root "public" ;; default and assumes "resources" 
              :server-port 3449

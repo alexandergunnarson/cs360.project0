@@ -1,0 +1,4 @@
+/target
+/*-init.clj
+/figwheel_server.log
+dev-resources/public/js/compiled/**

@@ -37,14 +37,19 @@
                     :height 200
                     :width  200}]
       [:h2.resume "My " [:i "(abbreviated)"] " résumé"]
+      [:h3.resume "(full resume available " [:a {:href "./resume.pdf"} "here"] ")"]
       [:ul
-        [:li "Used Clojure + ClojureScript, plus Datomic + DataScript"]
-        [:li "Used reactive expressions, cursors, and lenses"]
-        [:li "Created isomorphic client-and-server side database syncing"]
-        [:li "Wrote large shared client/server library called "
-             [:a {:href "https://www.github.com/alexandergunnarson/quantum"}
-             "quantum"]]
-        [:li "Created several reactive, data-driven web apps"]]]))
+        [:li [:pre "Used Clojure + ClojureScript, plus Datomic + DataScript"]]
+        [:li [:pre "Used reactive expressions, cursors, and lenses"]]
+        [:li [:pre "Created isomorphic client-and-server side database syncing"]]
+        [:li [:pre "Wrote large shared client/server library called "
+                   [:a {:href "https://www.github.com/alexandergunnarson/quantum"}
+                   "quantum"]]]
+        [:li [:pre "Created several reactive, data-driven web apps"]]]
+
+      [:h2.contact "Contact Me"]
+      [:form.contact
+        [:textarea {:type "text"}]]]))
 
 (defn weather []
   (fn []

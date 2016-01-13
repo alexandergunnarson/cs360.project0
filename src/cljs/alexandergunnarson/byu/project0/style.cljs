@@ -57,6 +57,9 @@
       :font-size      "100%"
       :vertical-align :baseline
       :background     :transparent}]
+   [:textarea:focus :input:focus
+     {:outline     :none
+      :font-family :inherit}]
    [:html :body
      {:height  "100%"
       :width   "100%"
@@ -70,11 +73,29 @@
       :font-size "30px"
       :margin-top 15
       :margin-bottom 15}]
-   [:h2.resume
+   [:h2.resume :h2.contact
      {:align :center
       :font-size "20px"
-      :margin-top 25
-      :margin-bottom 15}]
+      :margin-top 25}]
+   [:h2.resume
+     {:margin-bottom 5
+      :color :inherit}]
+   [:h2.contact
+     {:margin-bottom 15
+      :color :inherit}]
+   [:h3.resume
+     {:font-weight 300
+      :font-size :inherit
+      :margin-bottom 10}]
+   [:form.contact
+     {:margin-top             15
+      :margin-bottom          15}
+     [:textarea :textarea:focus
+       {:font-size            "15px"
+        :color                :black
+        :outline              :none
+        :font-family          (family :montserrat)
+        }]]
    [:#root
      {:display                :flex
       :flex-direction         :column
